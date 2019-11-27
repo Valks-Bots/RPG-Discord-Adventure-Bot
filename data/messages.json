@@ -1,0 +1,38 @@
+{
+  "restrictions": {
+    "DEVELOPMENT": "Under development.."
+  },
+  "permissions": {
+    "MANAGE_MESSAGES": "The MANAGE_MESSAGES permission is required.",
+    "BAN_MEMBERS": "The BAN_MEMBERS permission is required.",
+    "KICK_MEMBERS": "The KICK_MEMBERS permission is required.",
+    "MUTE_MEMBERS": "The MUTE_MEMBERS permission is required."
+  },
+  "invalid": {
+    "MESSAGE_COUNT": "Specify how many messages.",
+    "SPECIFY_USER": "Specify a user.",
+    "NAN": "Specify a number!",
+    "BOT": "You can't do this on a bot!",
+    "SELF": "You can't do this on yourself!",
+    "LIMIT": "Specify a lower value."
+  },
+  "error": {
+    "SQLITE_MISUSE": "Whoops, looks like someone reset the database! Contact the owner, valk#3277 if you have any questions. :eyes:"
+  },
+  "action": {
+    "PRIVATE_DM": "Sent in Private DM"
+  },
+  "fun": {
+    "THUMBNAIL_CAT": "https://thumbs.gfycat.com/WavyAromaticAmethystsunbird-max-1mb.gif",
+    "BOT_MOTTO": "This bot is a cat like the owner."
+  },
+  "leveling": {
+    "NO_ITEM": "Nothing",
+    "EQUIP": "Item successfully equipped.",
+    "FIND_OPPONENT": "Do you want to find another opponent?",
+    "LEFT_AREA": "You left the area.."
+  },
+  "await": {
+    "ACCEPT": "Do you accept?"
+  }
+}
