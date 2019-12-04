@@ -3,6 +3,7 @@
   "dependencies": {
     "discord": "^0.8.2",
     "discord.js": "^11.3.2",
+    "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
     "npm": "^6.1.0",
     "sqlite": "^2.9.2"
@@ -10,14 +11,21 @@
   "version": "1.0.0",
   "description": "A text based adventure discord bot.",
   "main": "bot.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "nodemon": "^2.0.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:server": "nodemon --quiet .",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/valkyrienyanko/RPG-Adventure-Discord-Bot.git"
-  },
+  "repository": "git+https://github.com/valkyrienyanko/RPG-Adventure-Discord-Bot.git",
   "author": "valkyrienyanko",
   "license": "ISC",
   "bugs": {

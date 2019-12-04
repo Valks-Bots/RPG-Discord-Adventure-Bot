@@ -7,6 +7,8 @@ const path = require('path');
 // connect to database
 sql.open('./database.sqlite');
 
+require('dotenv').config()
+
 module.exports = {
   'enemies_defeated_userid': [],
   'enemies_defeated': [],
@@ -117,6 +119,6 @@ client.on('guildMemberAdd', (member) => {
   }
 });
 
-client.login(botsettings.token).then(() => {
-  client.guilds.get(botsettings.botGuildID).channels.get(botsettings.botGuildReportChannelID).send('\`\`\`Bot was restarted..\`\`\`');
+client.login(process.env.TOKEN).then(() => {
+  // client.guilds.get(botsettings.botGuildID).channels.get(botsettings.botGuildReportChannelID).send('\`\`\`Bot was restarted..\`\`\`');
 });

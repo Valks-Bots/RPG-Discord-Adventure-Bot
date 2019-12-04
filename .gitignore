@@ -1,5 +1,3 @@
 node_modules/
-pfp.jpg
-package-lock.json
-run.bat
 database.sqlite
+.env
