@@ -7,7 +7,7 @@ Discord RPG bot.
 2. Download and install `LTS` [Node.js](https://nodejs.org/en/).
 3. Make sure you have yarn installed `npm i -g yarn`.
 4. Run `yarn install`.
-5. Create a user Discord bot from the Discord Developer Apps Portal page.
+5. Go to [Discord Developer Portal](https://discordapp.com/developers/applications/) and create a Discord User Bot.
 6. Create `.env` in project directory and put `TOKEN=yourTokenKey`.
 
 ## Contributing
