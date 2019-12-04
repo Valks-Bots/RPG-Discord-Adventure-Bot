@@ -1,8 +1,8 @@
-const botsettings = include('config.json');
-const utils = include('utils.js');
+const botsettings = include('config.json')
+const utils = include('utils.js')
 
-const messages = include('data/messages.json');
-const emotes = include('data/emojiCharacters.js');
+const messages = include('data/messages.json')
+const emotes = include('data/emojiCharacters.js')
 
 module.exports.run = async (client, msg, args) => {
   const adventure = [
@@ -14,21 +14,21 @@ module.exports.run = async (client, msg, args) => {
     'equip',
     'loot',
     'setup'
-  ];
+  ]
   const msc = [
     'help',
     'invite',
     'botdiscord',
     'purge <message_count>',
     'info'
-  ];
+  ]
   const moderation = [
     ''
   ]
   const owner = [
     'eval',
     'test'
-  ];
+  ]
 
   if (msg.guild.me.hasPermission('EMBED_LINKS')) {
     msg.channel.send('', {
@@ -42,27 +42,26 @@ module.exports.run = async (client, msg, args) => {
           url: messages.fun.THUMBNAIL_CAT
         },
         fields: [{
-            name: 'Adventure',
-            value: adventure.join('\n'),
-            inline: true
-          },
-          {
-            name: 'Msc',
-            value: msc.join('\n'),
-            inline: true
-          },
-          {
-            name: 'Owner',
-            value: owner.join('\n'),
-            inline: true
-          }
+          name: 'Adventure',
+          value: adventure.join('\n'),
+          inline: true
+        },
+        {
+          name: 'Msc',
+          value: msc.join('\n'),
+          inline: true
+        },
+        {
+          name: 'Owner',
+          value: owner.join('\n'),
+          inline: true
+        }
         ]
       }
-    });
+    })
   } else {
-    msg.channel.send(`**Commands** (prefix ${botsettings.prefix})\`\`\`\n${adventure.join('\n')} ${msc.join('\n')} ${owner.join('\n')}\`\`\`\nI've detected I do not have permissions for EMBED_LINKS, enable this if you want my messages to look a lot nicer.`);
+    msg.channel.send(`**Commands** (prefix ${botsettings.prefix})\`\`\`\n${adventure.join('\n')} ${msc.join('\n')} ${owner.join('\n')}\`\`\`\nI've detected I do not have permissions for EMBED_LINKS, enable this if you want my messages to look a lot nicer.`)
   }
-
 }
 
 module.exports.help = {

@@ -1,9 +1,9 @@
-const sql = require('sqlite');
+const sql = require('sqlite')
 
-const utils = include('utils.js');
+const utils = include('utils.js')
 
-const shop = include('commands/adventure/shop.js');
-const venture = include('commands/adventure/venture.js');
+const shop = include('commands/adventure/shop.js')
+const venture = include('commands/adventure/venture.js')
 
 module.exports.run = async (client, msg, args) => {
   await msg.channel.send('', {
@@ -12,77 +12,77 @@ module.exports.run = async (client, msg, args) => {
       description: 'You stumble upon a shop! :eyes:'
     }
   }).then(async m => {
-    const SHOP = utils.emoteCollector(msg, m, ['⚔', '🛡', '🛠', '⬆'], msg.author.id);
+    const SHOP = utils.emoteCollector(msg, m, ['⚔', '🛡', '🛠', '⬆'], msg.author.id)
 
-    await m.react('⚔');
-    await m.react('🛡');
-    await m.react('🛠');
-    await m.react('⬆');
+    await m.react('⚔')
+    await m.react('🛡')
+    await m.react('🛠')
+    await m.react('⬆')
 
     SHOP.on('collect', async (messageReaction, reactionCollector) => {
-      SHOP.stop();
+      SHOP.stop()
 
-      await utils.removeAllReactions(m, msg.guild.me.hasPermission('MANAGE_MESSAGES'));
+      await utils.removeAllReactions(m, msg.guild.me.hasPermission('MANAGE_MESSAGES'))
 
-      let reaction = messageReaction.emoji.name;
-      let items = include('data/items.js');
+      const reaction = messageReaction.emoji.name
+      const items = include('data/items.js')
 
       switch (reaction) {
         case '⬆':
-          await utils.editEmbed(m, msg, `Searching for a new area..`);
-          await venture.run(client, msg, 'no_shop');
-          await m.delete(1000);
-          break;
+          await utils.editEmbed(m, msg, 'Searching for a new area..')
+          await venture.run(client, msg, 'no_shop')
+          await m.delete(1000)
+          break
         case '⚔':
-          let weapons = [];
-          let i = 0;
+          const weapons = []
+          let i = 0
           for (const weapon of items.weapons) {
-            i++;
-            weapons.push(`${i}. Name: ${weapon.name}, Lore: ${weapon.lore}, Cost: ${weapon.value}`);
+            i++
+            weapons.push(`${i}. Name: ${weapon.name}, Lore: ${weapon.lore}, Cost: ${weapon.value}`)
           }
 
-          sql.get(`SELECT * FROM userprofile WHERE userid = ?`, [msg.author.id]).then(async row => {
-            const MESSAGE_WEAPONS_DISPLAY = `${weapons.join('\n')}\n\nPick a number from 1 to ${weapons.length}`;
-            const COLLECTOR_WEAPON = utils.collector(msg);
+          sql.get('SELECT * FROM userprofile WHERE userid = ?', [msg.author.id]).then(async row => {
+            const MESSAGE_WEAPONS_DISPLAY = `${weapons.join('\n')}\n\nPick a number from 1 to ${weapons.length}`
+            const COLLECTOR_WEAPON = utils.collector(msg)
 
-            await utils.editEmbed(m, msg, `Gold: **${row.gold}**\n\n${MESSAGE_WEAPONS_DISPLAY}`);
-            await m.react('⬆'); //go back button
+            await utils.editEmbed(m, msg, `Gold: **${row.gold}**\n\n${MESSAGE_WEAPONS_DISPLAY}`)
+            await m.react('⬆') // go back button
 
-            const COLLECTOR_BACK = utils.emoteCollector(msg, m, '⬆', msg.author.id);
+            const COLLECTOR_BACK = utils.emoteCollector(msg, m, '⬆', msg.author.id)
             COLLECTOR_BACK.on('collect', async () => {
-              COLLECTOR_BACK.stop();
-              COLLECTOR_WEAPON.stop();
-              await shop.run(client, msg);
-              await m.delete();
-            });
+              COLLECTOR_BACK.stop()
+              COLLECTOR_WEAPON.stop()
+              await shop.run(client, msg)
+              await m.delete()
+            })
 
             COLLECTOR_WEAPON.on('collect', async message => {
-              if (isNaN(message)) return;
-              let chosenWeapon = parseInt(message);
-              let weapon_id = chosenWeapon - 1;
-              let weapon = items.weapons[weapon_id];
+              if (isNaN(message)) return
+              const chosenWeapon = parseInt(message)
+              const weapon_id = chosenWeapon - 1
+              const weapon = items.weapons[weapon_id]
 
               if (row.gold >= weapon.value) {
-                //can afford
-                await sql.run(`UPDATE userprofile set gold = ? WHERE userid = ?`, [row.gold -= weapon.value, msg.author.id]);
-                await sql.run(`UPDATE userprofile set righthanditem = ? WHERE userid = ?`, [weapon_id + 1, msg.author.id]);
-                await utils.editEmbed(m, msg, `Gold: **${row.gold}**\n\n${MESSAGE_WEAPONS_DISPLAY}\n\nYou bought a ${weapon.name}`);
+                // can afford
+                await sql.run('UPDATE userprofile set gold = ? WHERE userid = ?', [row.gold -= weapon.value, msg.author.id])
+                await sql.run('UPDATE userprofile set righthanditem = ? WHERE userid = ?', [weapon_id + 1, msg.author.id])
+                await utils.editEmbed(m, msg, `Gold: **${row.gold}**\n\n${MESSAGE_WEAPONS_DISPLAY}\n\nYou bought a ${weapon.name}`)
               } else {
-                //can't afford
-                await utils.editEmbed(m, msg, `Gold: **${row.gold}**\n\n${MESSAGE_WEAPONS_DISPLAY}\n\nYou can't afford ${weapon.name}! You need ${weapon.value - row.gold} more gold to purchase this!`);
+                // can't afford
+                await utils.editEmbed(m, msg, `Gold: **${row.gold}**\n\n${MESSAGE_WEAPONS_DISPLAY}\n\nYou can't afford ${weapon.name}! You need ${weapon.value - row.gold} more gold to purchase this!`)
               }
-            });
-          });
-          break;
+            })
+          })
+          break
         case '🛡':
-          await utils.editEmbed(m, msg, `Armor..`);
-          break;
+          await utils.editEmbed(m, msg, 'Armor..')
+          break
         case '🛠':
-          await utils.editEmbed(m, msg, `Upgrades..`);
-          break;
+          await utils.editEmbed(m, msg, 'Upgrades..')
+          break
       }
-    });
-  });
+    })
+  })
 }
 
 module.exports.help = {
