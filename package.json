@@ -5,7 +5,7 @@
     "discord.js": "^11.3.2",
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
-    "npm": "^6.1.0",
+    "npm": "^6.13.4",
     "sqlite": "^2.9.2"
   },
   "version": "1.0.0",
