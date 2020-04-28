@@ -12,4 +12,4 @@ Discord RPG bot.
 7. Run bot with `yarn dev:server`.
 
 ## Contributing
-See [CONTRIBUTING.md](https://github.com/valkyrienyanko/RPG-Discord-Adventure-Bot/blob/master/CONTRIBUTORS.md)
+See [CONTRIBUTING.md](https://github.com/valkyrienyanko/RPG-Discord-Adventure-Bot/blob/master/.github/CONTRIBUTING.md)

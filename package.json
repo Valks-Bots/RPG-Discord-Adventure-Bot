@@ -21,9 +21,8 @@
     "nodemon": "^2.0.1"
   },
   "scripts": {
-    "dev:server": "nodemon --quiet .",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "dev:server": "cd src && nodemon -q bot.js",
+    "dev:lint": "cd src && eslint --fix ."
   },
   "repository": "git+https://github.com/valkyrienyanko/RPG-Adventure-Discord-Bot.git",
   "author": "valkyrienyanko",
